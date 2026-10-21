@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="SmartMart AI - Futuristic Grocery Store Management Platform with AI-powered inventory, sales forecasting, QR billing, and real-time analytics.">
+  <title>SmartMart AI — Intelligent Grocery Management</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Sidebar Navigation -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="logo-icon">
+        <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+          <rect width="28" height="28" rx="8" fill="url(#lg1)"/>
+          <path d="M7 10h14M7 14h10M7 18h12" stroke="white" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="21" cy="18" r="3" fill="white" opacity="0.9"/>
+          <defs>
+            <linearGradient id="lg1" x1="0" y1="0" x2="28" y2="28">
+              <stop stop-color="#22c55e"/>
+              <stop offset="1" stop-color="#16a34a"/>
+            </linearGradient>
+          </defs>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-name">SmartMart</span>
+        <span class="logo-badge">AI</span>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">Main</div>
+      <a href="#" class="nav-item active" data-page="dashboard" onclick="navigate('dashboard')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+        <span>Dashboard</span>
+        <span class="nav-badge live">Live</span>
+      </a>
+      <a href="#" class="nav-item" data-page="inventory" onclick="navigate('inventory')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+        <span>Inventory</span>
+      </a>
+      <a href="#" class="nav-item" data-page="cashier" onclick="navigate('cashier')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        <span>Smart Cashier</span>
+      </a>
+      <a href="#" class="nav-item" data-page="analytics" onclick="navigate('analytics')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        <span>Analytics</span>
+      </a>
+
+      <div class="nav-section-label">AI Features</div>
+      <a href="#" class="nav-item" data-page="ai-forecast" onclick="navigate('ai-forecast')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+        <span>AI Forecast</span>
+        <span class="nav-badge ai">AI</span>
+      </a>
+      <a href="#" class="nav-item" data-page="expiry" onclick="navigate('expiry')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        <span>Expiry Tracker</span>
+      </a>
+      <a href="#" class="nav-item" data-page="recommendations" onclick="navigate('recommendations')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+        <span>AI Recommends</span>
+        <span class="nav-badge ai">AI</span>
+      </a>
+
+      <div class="nav-section-label">Customers</div>
+      <a href="#" class="nav-item" data-page="customers" onclick="navigate('customers')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Customers</span>
+      </a>
+      <a href="#" class="nav-item" data-page="loyalty" onclick="navigate('loyalty')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        <span>Loyalty Rewards</span>
+      </a>
+      <a href="#" class="nav-item" data-page="udhaar" onclick="navigate('udhaar')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        <span>Udhaar Ledger</span>
+      </a>
+
+      <div class="nav-section-label">Operations</div>
+      <a href="#" class="nav-item" data-page="orders" onclick="navigate('orders')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span>Orders</span>
+        <span class="nav-badge new" id="order-badge">3</span>
+      </a>
+      <a href="#" class="nav-item" data-page="delivery" onclick="navigate('delivery')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+        <span>Delivery</span>
+      </a>
+      <a href="#" class="nav-item" data-page="whatsapp" onclick="navigate('whatsapp')">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span>WhatsApp Orders</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="user-avatar-mini">
+        <div class="avatar-circle">A</div>
+        <div class="user-info-mini">
+          <span class="user-name-mini">Admin</span>
+          <span class="user-role-mini">Store Manager</span>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Top Header -->
+  <header class="top-header">
+    <div class="header-left">
+      <button class="menu-toggle" id="menuToggle" onclick="toggleSidebar()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+      <div class="breadcrumb" id="breadcrumb">Dashboard</div>
+    </div>
+    <div class="header-center">
+      <div class="search-bar">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search products, customers, orders..." id="globalSearch">
+        <span class="search-shortcut">⌘K</span>
+      </div>
+    </div>
+    <div class="header-right">
+      <button class="header-btn" id="voiceBtn" onclick="toggleVoice()" title="Voice Stock Entry">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </button>
+      <button class="header-btn notification-btn" onclick="toggleNotifications()">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        <span class="notif-dot" id="notifDot"></span>
+      </button>
+      <div class="header-date" id="headerDate"></div>
+      <div class="admin-avatar">
+        <div class="avatar-circle-lg">A</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Notification Panel -->
+  <div class="notification-panel" id="notifPanel">
+    <div class="notif-header">
+      <span>Notifications</span>
+      <button onclick="clearNotifications()">Clear All</button>
+    </div>
+    <div class="notif-list" id="notifList"></div>
+  </div>
+
+  <!-- Voice Modal -->
+  <div class="voice-modal" id="voiceModal">
+    <div class="voice-modal-inner">
+      <div class="voice-pulse" id="voicePulse">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </div>
+      <h3>Voice Stock Entry</h3>
+      <p id="voiceStatus">Listening... Say "Add 50 units of Milk"</p>
+      <div class="voice-waveform" id="voiceWaveform">
+        <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="voice-result" id="voiceResult"></div>
+      <button class="btn-secondary" onclick="closeVoice()">Cancel</button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="main-content" id="mainContent">
+
+    <!-- DASHBOARD PAGE -->
+    <div class="page active" id="page-dashboard">
+
+      <!-- Live Alert Banner -->
+      <div class="alert-banner" id="alertBanner">
+        <div class="alert-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          <span id="alertText">🚨 Emergency Alert: Atta (10kg) — Only 2 bags remaining! Restock immediately.</span>
+          <button onclick="dismissAlert()">✕</button>
+        </div>
+      </div>
+
+      <!-- Stats Grid -->
+      <div class="stats-grid">
+        <div class="stat-card glass-card" data-animate="fadeUp">
+          <div class="stat-icon green">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value" id="todayRevenue">₹0</div>
+            <div class="stat-label">Today's Revenue</div>
+            <div class="stat-change positive">+18.4% vs yesterday</div>
+          </div>
+          <div class="stat-sparkline" id="spark1"></div>
+        </div>
+        <div class="stat-card glass-card" data-animate="fadeUp" style="animation-delay:0.1s">
+          <div class="stat-icon blue">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/></svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value" id="totalOrders">0</div>
+            <div class="stat-label">Total Orders</div>
+            <div class="stat-change positive">+24 new today</div>
+          </div>
+          <div class="stat-sparkline" id="spark2"></div>
+        </div>
+        <div class="stat-card glass-card" data-animate="fadeUp" style="animation-delay:0.2s">
+          <div class="stat-icon amber">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value" id="totalProducts">0</div>
+            <div class="stat-label">Products in Stock</div>
+            <div class="stat-change negative">-3 low stock</div>
+          </div>
+          <div class="stat-sparkline" id="spark3"></div>
+        </div>
+        <div class="stat-card glass-card" data-animate="fadeUp" style="animation-delay:0.3s">
+          <div class="stat-icon purple">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value" id="activeCustomers">0</div>
+            <div class="stat-label">Active Customers</div>
+            <div class="stat-change positive">+12 this week</div>
+          </div>
+          <div class="stat-sparkline" id="spark4"></div>
+        </div>
+        <div class="stat-card glass-card" data-animate="fadeUp" style="animation-delay:0.4s">
+          <div class="stat-icon rose">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value" id="todayProfit">₹0</div>
+            <div class="stat-label">Today's Profit</div>
+            <div class="stat-change positive">+22.1% margin</div>
+          </div>
+          <div class="stat-sparkline" id="spark5"></div>
+        </div>
+        <div class="stat-card glass-card" data-animate="fadeUp" style="animation-delay:0.5s">
+          <div class="stat-icon teal">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <div class="stat-content">
+            <div class="stat-value" id="expiryAlert">0</div>
+            <div class="stat-label">Expiry Alerts</div>
+            <div class="stat-change negative">Needs attention</div>
+          </div>
+          <div class="stat-sparkline" id="spark6"></div>
+        </div>
+      </div>
+
+      <!-- Charts Row -->
+      <div class="charts-row">
+        <div class="chart-card glass-card wide">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">Sales Analytics</h3>
+              <p class="chart-subtitle">AI-powered 7-day revenue trend</p>
+            </div>
+            <div class="chart-controls">
+              <button class="chart-btn active" onclick="switchChart('daily')">Daily</button>
+              <button class="chart-btn" onclick="switchChart('weekly')">Weekly</button>
+              <button class="chart-btn" onclick="switchChart('monthly')">Monthly</button>
+            </div>
+          </div>
+          <canvas id="salesChart" height="280"></canvas>
+        </div>
+        <div class="chart-card glass-card narrow">
+          <div class="chart-header">
+            <div>
+              <h3 class="chart-title">Category Split</h3>
+              <p class="chart-subtitle">Revenue by category</p>
+            </div>
+          </div>
+          <canvas id="categoryChart" height="220"></canvas>
+          <div class="category-legend" id="categoryLegend"></div>
+        </div>
+      </div>
+
+      <!-- Live Activity + Top Products -->
+      <div class="bottom-row">
+        <div class="activity-card glass-card">
+          <div class="card-header">
+            <h3>Live Activity</h3>
+            <div class="live-indicator">
+              <span class="live-dot"></span>Live
+            </div>
+          </div>
+          <div class="activity-list" id="activityList"></div>
+        </div>
+        <div class="top-products-card glass-card">
+          <div class="card-header">
+            <h3>Top Selling Products</h3>
+            <span class="see-all" onclick="navigate('inventory')">See All →</span>
+          </div>
+          <div class="top-products-list" id="topProductsList"></div>
+        </div>
+        <div class="quick-actions-card glass-card">
+          <div class="card-header"><h3>Quick Actions</h3></div>
+          <div class="quick-actions">
+            <button class="qa-btn" onclick="navigate('cashier')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+              New Sale
+            </button>
+            <button class="qa-btn" onclick="navigate('inventory')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+              Add Product
+            </button>
+            <button class="qa-btn" onclick="navigate('customers')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+              Add Customer
+            </button>
+            <button class="qa-btn" onclick="navigate('udhaar')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              Add Udhaar
+            </button>
+            <button class="qa-btn" onclick="navigate('whatsapp')">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+              WhatsApp
+            </button>
+            <button class="qa-btn" onclick="toggleVoice()">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/></svg>
+              Voice Entry
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI Forecast Preview -->
+      <div class="ai-forecast-preview glass-card">
+        <div class="ai-badge-header">
+          <div class="ai-chip">🤖 AI Insight</div>
+          <h3>Smart Demand Prediction — Next 7 Days</h3>
+        </div>
+        <div class="forecast-items" id="forecastItems"></div>
+      </div>
+
+    </div>
+
+    <!-- INVENTORY PAGE -->
+    <div class="page" id="page-inventory">
+      <div class="page-header">
+        <h1 class="page-title">Smart Inventory</h1>
+        <div class="page-actions">
+          <button class="btn-primary" onclick="openAddProduct()">+ Add Product</button>
+          <button class="btn-secondary" onclick="exportInventory()">Export CSV</button>
+        </div>
+      </div>
+      <div class="filter-row">
+        <input type="text" class="filter-input" placeholder="Search inventory..." id="invSearch" oninput="filterInventory()">
+        <select class="filter-select" id="invCategory" onchange="filterInventory()">
+          <option value="">All Categories</option>
+          <option value="dairy">Dairy</option>
+          <option value="grains">Grains & Pulses</option>
+          <option value="snacks">Snacks</option>
+          <option value="beverages">Beverages</option>
+          <option value="fruits">Fruits & Vegetables</option>
+          <option value="personal">Personal Care</option>
+        </select>
+        <select class="filter-select" id="invStatus" onchange="filterInventory()">
+          <option value="">All Status</option>
+          <option value="ok">In Stock</option>
+          <option value="low">Low Stock</option>
+          <option value="critical">Critical</option>
+          <option value="expiring">Expiring</option>
+        </select>
+      </div>
+      <div class="inventory-grid" id="inventoryGrid"></div>
+      <!-- Add Product Modal -->
+      <div class="modal-overlay" id="addProductModal" style="display:none">
+        <div class="modal glass-card">
+          <h3>Add New Product</h3>
+          <div class="form-grid">
+            <div class="form-group"><label>Product Name</label><input type="text" id="prodName" placeholder="e.g., Amul Milk 1L"></div>
+            <div class="form-group"><label>Category</label>
+              <select id="prodCategory">
+                <option value="dairy">Dairy</option>
+                <option value="grains">Grains & Pulses</option>
+                <option value="snacks">Snacks</option>
+                <option value="beverages">Beverages</option>
+                <option value="fruits">Fruits & Vegetables</option>
+                <option value="personal">Personal Care</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Quantity</label><input type="number" id="prodQty" placeholder="0"></div>
+            <div class="form-group"><label>Unit</label><input type="text" id="prodUnit" placeholder="e.g., litre, kg, pcs"></div>
+            <div class="form-group"><label>MRP (₹)</label><input type="number" id="prodMRP" placeholder="0.00"></div>
+            <div class="form-group"><label>Cost Price (₹)</label><input type="number" id="prodCost" placeholder="0.00"></div>
+            <div class="form-group"><label>Expiry Date</label><input type="date" id="prodExpiry"></div>
+            <div class="form-group"><label>Reorder Level</label><input type="number" id="prodReorder" placeholder="e.g., 10"></div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-primary" onclick="addProduct()">Add Product</button>
+            <button class="btn-secondary" onclick="closeAddProduct()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SMART CASHIER PAGE -->
+    <div class="page" id="page-cashier">
+      <div class="page-header">
+        <h1 class="page-title">Smart Cashier</h1>
+        <div class="page-actions">
+          <button class="btn-secondary" onclick="openQRScanner()">📷 QR Scan</button>
+        </div>
+      </div>
+      <div class="cashier-layout">
+        <div class="product-picker">
+          <input type="text" class="filter-input" placeholder="Search product..." id="cashierSearch" oninput="filterCashier()">
+          <div class="cashier-products" id="cashierProducts"></div>
+        </div>
+        <div class="bill-section glass-card">
+          <div class="bill-header">
+            <h3>🧾 Current Bill</h3>
+            <div class="customer-selector">
+              <select id="billCustomer">
+                <option value="">Walk-in Customer</option>
+              </select>
+            </div>
+          </div>
+          <div class="bill-items" id="billItems">
+            <div class="bill-empty">No items added yet</div>
+          </div>
+          <div class="bill-summary">
+            <div class="bill-row"><span>Subtotal</span><span id="billSubtotal">₹0.00</span></div>
+            <div class="bill-row"><span>GST (5%)</span><span id="billGST">₹0.00</span></div>
+            <div class="bill-row discount-row"><span>Loyalty Discount</span><span id="billDiscount">-₹0.00</span></div>
+            <div class="bill-row total-row"><span>Total</span><span id="billTotal">₹0.00</span></div>
+          </div>
+          <div class="payment-methods">
+            <button class="pay-btn cash active" onclick="selectPayment('cash')">💵 Cash</button>
+            <button class="pay-btn upi" onclick="selectPayment('upi')">📱 UPI</button>
+            <button class="pay-btn card" onclick="selectPayment('card')">💳 Card</button>
+            <button class="pay-btn udhaar" onclick="selectPayment('udhaar')">📋 Udhaar</button>
+          </div>
+          <button class="btn-primary btn-full checkout-btn" onclick="checkout()">✅ Generate Bill & Print</button>
+          <button class="btn-secondary btn-full" onclick="clearBill()">🗑️ Clear Bill</button>
+        </div>
+      </div>
+      <!-- QR Scanner Modal -->
+      <div class="modal-overlay" id="qrModal" style="display:none">
+        <div class="modal glass-card">
+          <h3>📷 QR / Barcode Scanner</h3>
+          <div class="qr-scanner-area">
+            <div class="qr-frame">
+              <div class="qr-corner tl"></div>
+              <div class="qr-corner tr"></div>
+              <div class="qr-corner bl"></div>
+              <div class="qr-corner br"></div>
+              <div class="qr-line" id="qrLine"></div>
+            </div>
+            <p>Point camera at product barcode</p>
+          </div>
+          <div class="qr-manual">
+            <input type="text" id="qrInput" placeholder="Or enter barcode manually...">
+            <button class="btn-primary" onclick="scanQR()">Add to Bill</button>
+          </div>
+          <button class="btn-secondary" style="width:100%;margin-top:12px" onclick="closeQR()">Close</button>
+        </div>
+      </div>
+      <!-- Bill Receipt Modal -->
+      <div class="modal-overlay" id="receiptModal" style="display:none">
+        <div class="modal glass-card receipt-modal">
+          <div class="receipt-header">
+            <div class="receipt-logo">🛒 SmartMart AI</div>
+            <p>Smart Grocery Store</p>
+            <p id="receiptDate"></p>
+          </div>
+          <div id="receiptItems"></div>
+          <div class="receipt-total" id="receiptTotal"></div>
+          <div class="receipt-footer">
+            <p>Thank you for shopping with us!</p>
+            <div class="loyalty-points" id="receiptLoyalty"></div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-primary" onclick="printReceipt()">🖨️ Print</button>
+            <button class="btn-secondary whatsapp-btn" onclick="sendWhatsApp()">📱 WhatsApp</button>
+            <button class="btn-secondary" onclick="closeReceipt()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ANALYTICS PAGE -->
+    <div class="page" id="page-analytics">
+      <div class="page-header">
+        <h1 class="page-title">Daily Profit Analytics</h1>
+        <div class="page-actions">
+          <input type="date" class="filter-input" id="analyticsDate" style="width:auto">
+          <button class="btn-secondary">Export Report</button>
+        </div>
+      </div>
+      <div class="analytics-kpi-row">
+        <div class="kpi-card glass-card">
+          <div class="kpi-label">Gross Revenue</div>
+          <div class="kpi-value green" id="anaRevenue">₹47,320</div>
+          <div class="kpi-trend positive">↑ 18.4%</div>
+        </div>
+        <div class="kpi-card glass-card">
+          <div class="kpi-label">Net Profit</div>
+          <div class="kpi-value blue" id="anaProfit">₹12,460</div>
+          <div class="kpi-trend positive">↑ 22.1%</div>
+        </div>
+        <div class="kpi-card glass-card">
+          <div class="kpi-label">Avg Order Value</div>
+          <div class="kpi-value amber" id="anaAOV">₹284</div>
+          <div class="kpi-trend negative">↓ 2.3%</div>
+        </div>
+        <div class="kpi-card glass-card">
+          <div class="kpi-label">Transactions</div>
+          <div class="kpi-value purple" id="anaTxn">167</div>
+          <div class="kpi-trend positive">↑ 14.7%</div>
+        </div>
+        <div class="kpi-card glass-card">
+          <div class="kpi-label">Udhaar Pending</div>
+          <div class="kpi-value rose" id="anaUdhaar">₹8,240</div>
+          <div class="kpi-trend negative">3 overdue</div>
+        </div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card glass-card wide">
+          <div class="chart-header"><h3 class="chart-title">Hourly Sales Flow</h3><p class="chart-subtitle">Today's revenue by hour</p></div>
+          <canvas id="hourlyChart" height="280"></canvas>
+        </div>
+        <div class="chart-card glass-card narrow">
+          <div class="chart-header"><h3 class="chart-title">Payment Methods</h3><p class="chart-subtitle">Today's breakdown</p></div>
+          <canvas id="paymentChart" height="220"></canvas>
+        </div>
+      </div>
+      <div class="charts-row">
+        <div class="chart-card glass-card" style="flex:1">
+          <div class="chart-header"><h3 class="chart-title">Weekly Profit vs Cost</h3></div>
+          <canvas id="profitChart" height="250"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- AI FORECAST PAGE -->
+    <div class="page" id="page-ai-forecast">
+      <div class="page-header">
+        <h1 class="page-title">🤖 AI Sales Forecasting</h1>
+      </div>
+      <div class="ai-intro glass-card">
+        <div class="ai-chip">AI Powered</div>
+        <p>Our AI analyzes your last 90 days of sales, seasonal trends, local festivals, and weather patterns to predict demand and optimize your inventory purchasing.</p>
+      </div>
+      <div class="forecast-grid" id="forecastGrid"></div>
+      <div class="charts-row" style="margin-top:24px">
+        <div class="chart-card glass-card" style="flex:1">
+          <div class="chart-header"><h3 class="chart-title">30-Day Demand Forecast</h3><div class="ai-chip" style="font-size:11px">AI Model</div></div>
+          <canvas id="demandForecastChart" height="300"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- EXPIRY TRACKER PAGE -->
+    <div class="page" id="page-expiry">
+      <div class="page-header">
+        <h1 class="page-title">Smart Expiry Tracker</h1>
+      </div>
+      <div class="expiry-summary">
+        <div class="expiry-stat red glass-card"><div class="ex-val" id="exExpired">0</div><div class="ex-label">Expired</div></div>
+        <div class="expiry-stat amber glass-card"><div class="ex-val" id="exCritical">0</div><div class="ex-label">Expiring in 3 days</div></div>
+        <div class="expiry-stat yellow glass-card"><div class="ex-val" id="exSoon">0</div><div class="ex-label">Expiring in 7 days</div></div>
+        <div class="expiry-stat green glass-card"><div class="ex-val" id="exGood">0</div><div class="ex-label">Good Stock</div></div>
+      </div>
+      <div class="expiry-list" id="expiryList"></div>
+    </div>
+
+    <!-- AI RECOMMENDATIONS PAGE -->
+    <div class="page" id="page-recommendations">
+      <div class="page-header">
+        <h1 class="page-title">🧠 AI Product Recommendations</h1>
+      </div>
+      <div class="ai-intro glass-card">
+        <div class="ai-chip">Recommendation Engine</div>
+        <p>Based on customer purchase patterns, seasonal trends, and market data, our AI recommends the best products to stock and promote.</p>
+      </div>
+      <div class="rec-categories">
+        <button class="cat-btn active" onclick="filterRec('all')">All</button>
+        <button class="cat-btn" onclick="filterRec('stock')">Stock Up</button>
+        <button class="cat-btn" onclick="filterRec('promote')">Promote</button>
+        <button class="cat-btn" onclick="filterRec('discount')">Offer Discount</button>
+      </div>
+      <div class="rec-grid" id="recGrid"></div>
+    </div>
+
+    <!-- CUSTOMERS PAGE -->
+    <div class="page" id="page-customers">
+      <div class="page-header">
+        <h1 class="page-title">Customer Management</h1>
+        <div class="page-actions">
+          <button class="btn-primary" onclick="openAddCustomer()">+ Add Customer</button>
+        </div>
+      </div>
+      <div class="customers-grid" id="customersGrid"></div>
+      <!-- Customer Detail Modal -->
+      <div class="modal-overlay" id="customerModal" style="display:none">
+        <div class="modal glass-card" style="max-width:700px">
+          <div id="customerDetail"></div>
+          <button class="btn-secondary" style="width:100%;margin-top:16px" onclick="closeCustomerModal()">Close</button>
+        </div>
+      </div>
+      <!-- Add Customer Modal -->
+      <div class="modal-overlay" id="addCustomerModal" style="display:none">
+        <div class="modal glass-card">
+          <h3>Add New Customer</h3>
+          <div class="form-grid">
+            <div class="form-group"><label>Name</label><input type="text" id="custName" placeholder="Customer name"></div>
+            <div class="form-group"><label>Phone</label><input type="text" id="custPhone" placeholder="+91 XXXXX XXXXX"></div>
+            <div class="form-group"><label>Address</label><input type="text" id="custAddr" placeholder="Address"></div>
+            <div class="form-group"><label>Notes</label><input type="text" id="custNotes" placeholder="Any notes..."></div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-primary" onclick="addCustomer()">Add Customer</button>
+            <button class="btn-secondary" onclick="closeAddCustomer()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- LOYALTY PAGE -->
+    <div class="page" id="page-loyalty">
+      <div class="page-header">
+        <h1 class="page-title">⭐ Customer Loyalty Rewards</h1>
+      </div>
+      <div class="loyalty-summary">
+        <div class="loyalty-stat glass-card"><div class="ls-val" id="lsTotalPoints">0</div><div class="ls-label">Total Points Issued</div></div>
+        <div class="loyalty-stat glass-card"><div class="ls-val" id="lsRedeemed">0</div><div class="ls-label">Points Redeemed</div></div>
+        <div class="loyalty-stat glass-card"><div class="ls-val" id="lsMembers">0</div><div class="ls-label">Loyalty Members</div></div>
+      </div>
+      <div class="loyalty-tiers">
+        <div class="tier-card bronze glass-card"><div class="tier-icon">🥉</div><h4>Bronze</h4><p>0–999 pts</p><ul><li>1 pt per ₹10</li><li>Birthday discount 5%</li></ul></div>
+        <div class="tier-card silver glass-card"><div class="tier-icon">🥈</div><h4>Silver</h4><p>1000–4999 pts</p><ul><li>1.5 pts per ₹10</li><li>Birthday discount 10%</li><li>Priority billing</li></ul></div>
+        <div class="tier-card gold glass-card"><div class="tier-icon">🥇</div><h4>Gold</h4><p>5000+ pts</p><ul><li>2 pts per ₹10</li><li>Birthday discount 15%</li><li>Free delivery</li><li>Monthly hamper</li></ul></div>
+      </div>
+      <div class="loyalty-members" id="loyaltyMembers"></div>
+    </div>
+
+    <!-- UDHAAR PAGE -->
+    <div class="page" id="page-udhaar">
+      <div class="page-header">
+        <h1 class="page-title">💸 Digital Udhaar Ledger</h1>
+        <div class="page-actions">
+          <button class="btn-primary" onclick="openAddUdhaar()">+ Add Entry</button>
+        </div>
+      </div>
+      <div class="udhaar-summary">
+        <div class="ud-stat glass-card red-border"><div class="ud-val" id="udTotal">₹0</div><div class="ud-label">Total Outstanding</div></div>
+        <div class="ud-stat glass-card amber-border"><div class="ud-val" id="udOverdue">₹0</div><div class="ud-label">Overdue (>30 days)</div></div>
+        <div class="ud-stat glass-card green-border"><div class="ud-val" id="udCollected">₹0</div><div class="ud-label">Collected This Month</div></div>
+      </div>
+      <div class="udhaar-list" id="udhaarList"></div>
+      <!-- Add Udhaar Modal -->
+      <div class="modal-overlay" id="addUdhaarModal" style="display:none">
+        <div class="modal glass-card">
+          <h3>Add Udhaar Entry</h3>
+          <div class="form-grid">
+            <div class="form-group"><label>Customer</label>
+              <select id="udhaarCustomer"></select>
+            </div>
+            <div class="form-group"><label>Amount (₹)</label><input type="number" id="udhaarAmount" placeholder="0.00"></div>
+            <div class="form-group"><label>Due Date</label><input type="date" id="udhaarDue"></div>
+            <div class="form-group"><label>Note</label><input type="text" id="udhaarNote" placeholder="What for?"></div>
+          </div>
+          <div class="modal-actions">
+            <button class="btn-primary" onclick="addUdhaar()">Add Entry</button>
+            <button class="btn-secondary" onclick="closeAddUdhaar()">Cancel</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORDERS PAGE -->
+    <div class="page" id="page-orders">
+      <div class="page-header">
+        <h1 class="page-title">Live Orders</h1>
+        <div class="live-indicator"><span class="live-dot"></span>Real-time</div>
+      </div>
+      <div class="orders-kanban" id="ordersKanban">
+        <div class="kanban-col">
+          <div class="kanban-header pending">New Orders <span class="kanban-count" id="kc-new">0</span></div>
+          <div class="kanban-cards" id="kc-new-list"></div>
+        </div>
+        <div class="kanban-col">
+          <div class="kanban-header processing">Preparing <span class="kanban-count" id="kc-prep">0</span></div>
+          <div class="kanban-cards" id="kc-prep-list"></div>
+        </div>
+        <div class="kanban-col">
+          <div class="kanban-header delivery">Out for Delivery <span class="kanban-count" id="kc-del">0</span></div>
+          <div class="kanban-cards" id="kc-del-list"></div>
+        </div>
+        <div class="kanban-col">
+          <div class="kanban-header delivered">Delivered <span class="kanban-count" id="kc-done">0</span></div>
+          <div class="kanban-cards" id="kc-done-list"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DELIVERY PAGE -->
+    <div class="page" id="page-delivery">
+      <div class="page-header">
+        <h1 class="page-title">🚴 Delivery Tracking</h1>
+      </div>
+      <div class="delivery-layout">
+        <div class="delivery-list-panel glass-card">
+          <h3>Active Deliveries</h3>
+          <div id="deliveryList"></div>
+        </div>
+        <div class="delivery-map glass-card">
+          <div class="map-placeholder">
+            <div class="map-bg"></div>
+            <div class="map-overlay">
+              <svg viewBox="0 0 100 100" width="80" height="80" opacity="0.3">
+                <circle cx="50" cy="50" r="40" fill="none" stroke="#22c55e" stroke-width="2"/>
+                <circle cx="50" cy="50" r="25" fill="none" stroke="#22c55e" stroke-width="1"/>
+                <circle cx="50" cy="50" r="10" fill="none" stroke="#22c55e" stroke-width="1"/>
+              </svg>
+              <div class="delivery-markers" id="deliveryMarkers"></div>
+            </div>
+            <div class="map-label">Live Delivery Map</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WHATSAPP ORDERS PAGE -->
+    <div class="page" id="page-whatsapp">
+      <div class="page-header">
+        <h1 class="page-title">📱 WhatsApp Order Integration</h1>
+      </div>
+      <div class="wa-layout">
+        <div class="wa-config glass-card">
+          <h3>WhatsApp Business Setup</h3>
+          <div class="wa-connected">
+            <div class="wa-status-dot"></div>
+            <span>Connected: +91 98765 43210</span>
+          </div>
+          <div class="wa-stats">
+            <div class="wa-stat"><div class="wa-sv">47</div><div class="wa-sl">Orders Today</div></div>
+            <div class="wa-stat"><div class="wa-sv">₹12,840</div><div class="wa-sl">WA Revenue</div></div>
+            <div class="wa-stat"><div class="wa-sv">98%</div><div class="wa-sl">Response Rate</div></div>
+          </div>
+          <div class="wa-template">
+            <h4>Auto-Reply Template</h4>
+            <div class="template-box">
+              <p>🛒 *SmartMart AI*</p>
+              <p>Thank you for your order! 🙏</p>
+              <p>Order #{{id}} received.</p>
+              <p>Estimated delivery: *45 mins*</p>
+              <p>Track: smartmart.ai/track/{{id}}</p>
+            </div>
+          </div>
+        </div>
+        <div class="wa-chat glass-card">
+          <div class="wa-chat-header">
+            <div class="wa-avatar">📱</div>
+            <div>
+              <div class="wa-chat-name">WhatsApp Orders</div>
+              <div class="wa-chat-sub">Live Order Feed</div>
+            </div>
+          </div>
+          <div class="wa-messages" id="waMessages"></div>
+          <div class="wa-input">
+            <input type="text" id="waReply" placeholder="Send message to customer...">
+            <button class="btn-primary" onclick="sendWAReply()">Send</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
